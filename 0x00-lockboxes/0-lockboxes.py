@@ -8,7 +8,7 @@ def canUnlockAll(boxes):
     for box in listBoxes:
         for key in boxes[box]:
             if key < len(boxes) and key not in listBoxes:
-                register.append(key)
+                listBoxes.append(key)
     if len(listBoxes) == len(boxes):
         return True
     return False
