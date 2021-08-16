@@ -2,18 +2,19 @@
 """
 calculates the fewest number of operations needed to result in exactly n
 """
+from math import sqrt
 
 
 def minOperations(n):
-    text = "H"
-    countOperaciones = 0
-    i = text.count("H")
-
-    if i == 0:
+    min_operations = 0
+    if n <= 1:
         return 0
-    while i != n:
-        copy = "H" if i == 1 else text if (n % i) == 0 else copy
-        countOperaciones += 2 if (i == 1 or (n % i) == 0) else 1
-        text = text + copy
-        i = text.count("H")
-    return countOperaciones
+    for i in range(2, int(sqrt(n) + 1)):
+        while n % i == 0:
+            min_operations = min_operations + i
+            n = n / i
+            if n <= 1:
+                break
+    if n > 1:
+        min_operations = min_operations + int(n)
+    return min_operations
